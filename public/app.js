@@ -41,7 +41,10 @@ new Vue({
     },
     copy: function () {
       navigator.clipboard.writeText(this.toCopyUrl).then(
-        function () {},
+        function () {
+          // copy this.toCopyUrl
+          // console.log(`copy : ${this.toCopyUrl}`);
+        },
         function (err) {
           console.error(err);
         },
@@ -52,7 +55,7 @@ new Vue({
       this.getAccessLogDataTable(1);
     },
     getAccessLogDataTable: async function (page) {
-      const { data, status } = await axios.get(`/getaccesslog`, {
+      const { data } = await axios.get(`/getaccesslog`, {
         params: {
           page: page,
         },
