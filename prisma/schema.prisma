@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model tb_link {
+  id            Int             @id @default(autoincrement())
+  counter       Int             @default(0)
+  slug          String
+  url           String
+  status        String          @default("ACTIVE")
+  create_at     DateTime?       @db.Timestamp(6)
+  update_at     DateTime?       @db.Timestamp(6)
+  tb_access_log tb_access_log[]
+}
+
+model tb_access_log {
+  id        Int       @id @default(autoincrement())
+  link_id   Int
+  ip        String
+  agent     String
+  create_at DateTime? @db.Timestamp(6)
+  tb_link   tb_link?  @relation(fields: [link_id], references: [id])
+}

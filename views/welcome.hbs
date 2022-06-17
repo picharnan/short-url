@@ -1,0 +1,164 @@
+<html>
+  <head>
+    <title>Short URL</title>
+    <link
+      href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'
+      rel='stylesheet'
+    />
+    <link
+      href='https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css'
+      rel='stylesheet'
+    />
+    <link
+      href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'
+      rel='stylesheet'
+    />
+    <meta
+      name='viewport'
+      content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui'
+    />
+  </head>
+  <body>
+    <div id='app'>
+      <v-app>
+        <v-main>
+          <v-container style='margin-top: 200px;'>
+
+            <v-row justify='center'>
+              <v-col cols='8'>
+
+                <v-form @submit.prevent='submit'>
+                  <v-text-field
+                    v-model='url'
+                    label='URL'
+                    required
+                    :rules='urlRule'
+                  ></v-text-field>
+
+                  <v-row>
+                    <v-col cols='6'>
+                      <v-btn
+                        color='primary'
+                        x-large
+                        @click='generateUrl'
+                        :disabled='!isValid'
+                      >
+                        SHORT URL
+                      </v-btn>
+
+                      <v-btn
+                        color='error'
+                        class='mr-4'
+                        x-large
+                        @click='clear'
+                        :disabled='url === ""'
+                      >
+                        Clear
+                      </v-btn>
+                    </v-col>
+                    <v-col cols='6' style='text-align: right;'>
+                      <a href='#' @click.prevent='openAccessLogDialog'>Access
+                        Log</a>
+                    </v-col>
+                  </v-row>
+
+                </v-form>
+
+                <div style='margin-top: 30px;' v-if='shortUrl !== null'>
+                  <v-card class='mx-auto' outlined>
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <v-list-item-title class='text-h5 mb-1'>
+                          <a :href='toCopyUrl'>\{{this.toCopyUrl}}</a>
+                        </v-list-item-title>
+                        <v-list-item-subtitle>
+                          \{{this.shortUrl.url}}
+                        </v-list-item-subtitle>
+                      </v-list-item-content>
+
+                    </v-list-item>
+
+                    <v-card-actions>
+                      <v-btn color='primary' x-large @click='copy'>
+                        COPY LINK
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </div>
+
+              </v-col>
+            </v-row>
+
+            <v-row justify='center'>
+              <v-dialog
+                v-model='dialog'
+                fullscreen
+                hide-overlay
+                transition='dialog-bottom-transition'
+              >
+                <v-card>
+                  <v-toolbar dark color='primary'>
+                    {{! <v-btn icon dark @click='dialog = false'>
+                      <v-icon>mdi-close</v-icon>
+                    </v-btn> }}
+                    <v-toolbar-title>Access Log</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-toolbar-items>
+                      <v-btn dark text @click='dialog = false'>
+                        Close
+                      </v-btn>
+                    </v-toolbar-items>
+                  </v-toolbar>
+                  <div>
+                    <v-simple-table fixed-header height='300px'>
+                      <template v-slot:default>
+                        <thead>
+                          <tr>
+                            <th class='text-left'>
+                              Short URL
+                            </th>
+                            <th class='text-left'>
+                              Destination URL
+                            </th>
+                            <th class='text-left'>
+                              User Agent
+                            </th>
+                            <th class='text-right'>
+                              Time
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{!-- <tr v-for='item in desserts' :key='item.name'> --}}
+                          <tr >
+                            <td>111</td>
+                            <td>111</td>
+                            <td>111</td>
+                            <td>111</td>
+                          </tr>
+                        </tbody>
+                      </template>
+                    </v-simple-table>
+                  </div>
+                </v-card>
+              </v-dialog>
+            </v-row>
+
+          </v-container>
+        </v-main>
+      </v-app>
+    </div>
+
+    <script
+      src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js'
+    ></script>
+    <script src='https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js'></script>
+    <script
+      src='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js'
+    ></script>
+    <script>
+      var baseUrl = '{{baseUrl}}';
+    </script>
+    <script src='/app.js'></script>
+  </body>
+</html>
