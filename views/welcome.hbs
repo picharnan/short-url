@@ -110,10 +110,13 @@
                     </v-toolbar-items>
                   </v-toolbar>
                   <div>
-                    <v-simple-table fixed-header height='300px'>
+                    <v-simple-table fixed-header height='800px'>
                       <template v-slot:default>
                         <thead>
                           <tr>
+                            <th class='text-left'>
+                              ID
+                            </th>
                             <th class='text-left'>
                               Short URL
                             </th>
@@ -123,22 +126,35 @@
                             <th class='text-left'>
                               User Agent
                             </th>
-                            <th class='text-right'>
+                            <th class='text-left'>
                               Time
                             </th>
                           </tr>
                         </thead>
                         <tbody>
-                          {{!-- <tr v-for='item in desserts' :key='item.name'> --}}
-                          <tr >
-                            <td>111</td>
-                            <td>111</td>
-                            <td>111</td>
-                            <td>111</td>
+                          <tr v-for='row in accessLogList' :key='row.id'>
+                            <td>\{{row.id}}</td>
+                            <td>\{{this.baseUrl + "/" + row.tb_link.slug}}</td>
+                            <td>\{{row.tb_link.url}}</td>
+                            <td>\{{row.agent}}</td>
+                            <td>\{{row.create_at}}</td>
                           </tr>
                         </tbody>
+
                       </template>
                     </v-simple-table>
+                    <div
+                      style='position: fixed; width: 100%; bottom: 0px; background-color: white; margin-top: 10px;'
+                    >
+                      <div class='text-center'>
+                        <v-pagination
+                          v-model='page'
+                          :length='lastPage'
+                          :total-visible='7'
+                          @input='onPaginationChange'
+                        ></v-pagination>
+                      </div>
+                    </div>
                   </div>
                 </v-card>
               </v-dialog>

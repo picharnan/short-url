@@ -20,6 +20,10 @@ new Vue({
         },
       ],
       dialog: false,
+      page: 1,
+      accessLogList: [],
+      lastPage: 1,
+      hasMore: false,
     };
   },
   methods: {
@@ -45,6 +49,20 @@ new Vue({
     },
     openAccessLogDialog: function () {
       this.dialog = true;
+      this.getAccessLogDataTable(1);
+    },
+    getAccessLogDataTable: async function (page) {
+      const { data, status } = await axios.get(`/getaccesslog`, {
+        params: {
+          page: page,
+        },
+      });
+      this.accessLogList = data.access_log_data.accessLogList;
+      this.hasMore = data.access_log_data.hasMore;
+      this.lastPage = data.access_log_data.lastPage;
+    },
+    onPaginationChange: function () {
+      this.getAccessLogDataTable(this.page);
     },
   },
 });

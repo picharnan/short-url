@@ -94,13 +94,14 @@ export class AppService {
       },
       skip: skip,
       take: take,
+      include: {
+        tb_link: true,
+      },
     });
 
     const totalRow = await this.prisma.tb_access_log.count();
     const hasMore = totalRow > skip + accessLogList.length;
     const lastPage = Math.ceil(totalRow / take);
-
-    // console.log(accessLogList);
 
     return {
       page: page,
