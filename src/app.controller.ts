@@ -36,7 +36,7 @@ export class AppController {
     return {
       status: true,
       code: 'GET_ACCESS_LOG_SUCCESS',
-      access_log_data: accessLogData,
+      accessLogData: accessLogData,
     };
   }
 

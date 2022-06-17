@@ -60,9 +60,9 @@ new Vue({
           page: page,
         },
       });
-      this.accessLogList = data.access_log_data.accessLogList;
-      this.hasMore = data.access_log_data.hasMore;
-      this.lastPage = data.access_log_data.lastPage;
+      this.accessLogList = data.accessLogData.accessLogList;
+      this.hasMore = data.accessLogData.hasMore;
+      this.lastPage = data.accessLogData.lastPage;
     },
     onPaginationChange: function () {
       this.getAccessLogDataTable(this.page);
