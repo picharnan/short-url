@@ -51,7 +51,15 @@ export class AppController {
     const link = await this.appService.getLinkBySlug(params.slug);
     if (link) {
       this.appService.addAccessLog(link, ip.toString(), ua);
-      return res.redirect(link.url);
+      let redirectUrl = link.url;
+      if (
+        !link.url.startsWith(`http`) &&
+        !link.url.startsWith(`https`) &&
+        !link.url.startsWith(`//`)
+      ) {
+        redirectUrl = `//${redirectUrl}`;
+      }
+      return res.redirect(redirectUrl);
     }
     return res.status(404).send('Not found');
   }
