@@ -19,7 +19,7 @@ I use PostgreSQL on development process. The [prisma.io](https://www.prisma.io/)
 ## Installation
 
 ```bash
-$ npm install
+npm install
 ```
 
 ## Setup database
@@ -27,7 +27,7 @@ $ npm install
 Config connect string in .env file. Then run prisma command to migrate the database and generate Prisma client.
 
 ```bash
-$ npx prisma db push
+npx prisma db push
 ```
 
 ### Setup database trouble
@@ -38,11 +38,11 @@ I use PosrgreSQL as databse and don't test for other. If you have a trouble with
 
 ```bash
 # development
-$ npm run start
+npm run start
 
 # watch mode
-$ npm run start:dev
+npm run start:dev
 
 # production mode
-$ npm run start:prod
+npm run start:prod
 ```
