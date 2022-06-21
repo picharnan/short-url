@@ -61,7 +61,7 @@ npm run start:dev
 npm run start:prod
 ```
 
-# VUE CLI version
+## VUE CLI version
 
 Also dev to VUE CLI version. You can found this project at /client folder
 
