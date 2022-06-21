@@ -60,3 +60,12 @@ npm run start:dev
 # production mode
 npm run start:prod
 ```
+
+# VUE CLI version
+
+Also dev to VUE CLI version. You can found this project at /client folder
+
+```bash
+cd client
+npm run serve
+```
