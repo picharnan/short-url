@@ -16,6 +16,20 @@ This project is just for hobby. If you want to develop just fork. Thanks for you
 
 I use PostgreSQL on development process. The [prisma.io](https://www.prisma.io/) is ORM. You can choose the right database for you, such as MySQL, MSSQL, PostgreSQL. Then just modify database connect string that match your choosed database.
 
+## Database Set-up by Docker
+
+Run this command to build docker
+
+```bash
+docker-compose up
+```
+
+- username : postgres
+- password : posrgres
+- port : 5431
+
+But you can modify DB environment at .env file
+
 ## Installation
 
 ```bash
